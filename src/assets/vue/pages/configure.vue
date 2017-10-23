@@ -25,7 +25,7 @@
             </f7-list-item>
         </f7-list>
 
-        <f7-button color="green" round> Button Round
+        <f7-button color="green" round> Save config
         </f7-button>
     </f7-block>
 </f7-page>
