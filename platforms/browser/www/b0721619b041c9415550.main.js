@@ -34387,6 +34387,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({});
 
@@ -34683,6 +34685,20 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     attrs: {
       "link": "/form/",
       "title": "Form",
+      "link-view": "#main-view",
+      "link-close-panel": ""
+    }
+  }), _vm._v(" "), _c('f7-list-item', {
+    attrs: {
+      "link": "/7dtdserver/",
+      "title": "Your server",
+      "link-view": "#main-view",
+      "link-close-panel": ""
+    }
+  }), _vm._v(" "), _c('f7-list-item', {
+    attrs: {
+      "link": "/configure/",
+      "title": "Configure",
       "link-view": "#main-view",
       "link-close-panel": ""
     }
