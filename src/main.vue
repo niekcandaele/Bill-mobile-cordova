@@ -31,7 +31,7 @@
 					<f7-nav-left>
 						<f7-link icon="icon-bars" open-panel="left"></f7-link>
 					</f7-nav-left>
-					<f7-nav-center sliding>Framework7</f7-nav-center>
+					<f7-nav-center sliding>Bill</f7-nav-center>
 				</f7-navbar>
 				<!-- Pages -->
 				<f7-pages>

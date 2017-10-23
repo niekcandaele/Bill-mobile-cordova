@@ -34006,7 +34006,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({});
 
@@ -34734,7 +34733,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     attrs: {
       "sliding": ""
     }
-  }, [_vm._v("Framework7")])], 1), _vm._v(" "), _c('f7-pages', [_c('f7-page', [_c('f7-block-title', [_vm._v("Welcome to my App")]), _vm._v(" "), _c('f7-block', {
+  }, [_vm._v("Bill")])], 1), _vm._v(" "), _c('f7-pages', [_c('f7-page', [_c('f7-block-title', [_vm._v("Welcome to my App")]), _vm._v(" "), _c('f7-block', {
     attrs: {
       "inner": ""
     }
@@ -34881,11 +34880,11 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     attrs: {
       "inner": ""
     }
-  }, [_c('p', [_vm._v("Here is About page!")]), _vm._v(" "), _c('p', [_vm._v("You can go "), _c('f7-link', {
+  }, [_c('h1', [_vm._v("About")]), _vm._v(" "), _c('p', [_vm._v("In this mobile application administrators of 7 days to die servers can see information about their server on the go")]), _vm._v(" "), _c('p', [_vm._v("Before you can use this app you have to have "), _c('a', {
     attrs: {
-      "back": ""
+      "href": "http://billbot.xyz/"
     }
-  }, [_vm._v("back")]), _vm._v(".")], 1), _vm._v(" "), _c('p', [_vm._v("Mauris posuere sit amet metus id venenatis. Ut ante dolor, tempor nec commodo rutrum, varius at sem. Nullam ac nisi non neque ornare pretium. Nulla mauris mauris, consequat et elementum sit amet, egestas sed orci. In hac habitasse platea dictumst.")]), _vm._v(" "), _c('p', [_vm._v("Fusce eros lectus, accumsan eget mi vel, iaculis tincidunt felis. Nulla tincidunt pharetra sagittis. Fusce in felis eros. Nulla sit amet aliquam lorem, et gravida ipsum. Mauris consectetur nisl non sollicitudin tristique. Praesent vitae metus ac quam rhoncus mattis vel et nisi. Aenean aliquet, felis quis dignissim iaculis, lectus quam tincidunt ligula, et venenatis turpis risus sed lorem. Morbi eu metus elit. Ut vel diam dolor.")])])], 1)
+  }, [_vm._v("Bill")])])])], 1)
 },staticRenderFns: []}
 module.exports.render._withStripped = true
 if (false) {
@@ -34941,6 +34940,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     }
   })], 1)], 1), _vm._v(" "), _c('f7-button', {
     attrs: {
+      "color": "green",
       "round": ""
     }
   }, [_vm._v(" Button Round\n        ")])], 1)], 1)
