@@ -34031,6 +34031,30 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({});
 
@@ -34285,10 +34309,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-//
-//
-//
-//
 //
 //
 //
@@ -34670,11 +34690,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     attrs: {
       "title": "Left Panel"
     }
-  }), _vm._v(" "), _c('f7-pages', [_c('f7-page', [_c('f7-block', {
-    attrs: {
-      "inner": ""
-    }
-  }, [_c('p', [_vm._v("Left panel content goes here")])]), _vm._v(" "), _c('f7-block-title', [_vm._v("Load page in main view")]), _vm._v(" "), _c('f7-list', [_c('f7-list-item', {
+  }), _vm._v(" "), _c('f7-pages', [_c('f7-page', [_c('f7-list', [_c('f7-list-item', {
     attrs: {
       "link": "/about/",
       "title": "About",
@@ -34899,7 +34915,35 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     attrs: {
       "inner": ""
     }
-  }, [_c('p', [_vm._v("CONFIG")])])], 1)
+  }, [_c('p', [_vm._v("CONFIG")])]), _vm._v(" "), _c('f7-block', [_c('f7-list', {
+    attrs: {
+      "form": ""
+    }
+  }, [_c('f7-list-item', [_c('f7-label', [_vm._v("IP")]), _vm._v(" "), _c('f7-input', {
+    attrs: {
+      "type": "text",
+      "placeholder": "Server IP"
+    }
+  })], 1), _vm._v(" "), _c('f7-list-item', [_c('f7-label', [_vm._v("Web API port")]), _vm._v(" "), _c('f7-input', {
+    attrs: {
+      "type": "integer",
+      "placeholder": "Webport"
+    }
+  })], 1), _vm._v(" "), _c('f7-list-item', [_c('f7-label', [_vm._v("Authorization name")]), _vm._v(" "), _c('f7-input', {
+    attrs: {
+      "type": "text",
+      "placeholder": "Auth name"
+    }
+  })], 1), _vm._v(" "), _c('f7-list-item', [_c('f7-label', [_vm._v("Authorization token")]), _vm._v(" "), _c('f7-input', {
+    attrs: {
+      "type": "text",
+      "placeholder": "Auth token"
+    }
+  })], 1)], 1), _vm._v(" "), _c('f7-button', {
+    attrs: {
+      "round": ""
+    }
+  }, [_vm._v(" Button Round\n        ")])], 1)], 1)
 },staticRenderFns: []}
 module.exports.render._withStripped = true
 if (false) {
