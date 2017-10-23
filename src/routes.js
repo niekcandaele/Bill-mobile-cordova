@@ -11,7 +11,11 @@ export default [{
         component: require('./assets/vue/pages/dynamic-route.vue')
     },
     {
-        path: '/7dtdserver',
+        path: '/7dtdserver/',
         component: require('./assets/vue/pages/sevendtdserver.vue')
+    },
+    {
+        path: '/configure/',
+        component: require('./assets/vue/pages/configure.vue')
     }
 ]

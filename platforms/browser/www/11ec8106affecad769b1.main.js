@@ -63,7 +63,7 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 61);
+/******/ 	return __webpack_require__(__webpack_require__.s = 64);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -616,7 +616,8 @@ module.exports = function xhrAdapter(config) {
     // For IE 8/9 CORS support
     // Only supports POST and GET calls and doesn't returns the response headers.
     // DON'T do this for testing b/c XMLHttpRequest is mocked, not XDomainRequest.
-    if ("development" !== 'test' &&
+    if (!window.XMLHttpRequest &&
+        "development" !== 'test' &&
         typeof window !== 'undefined' &&
         window.XDomainRequest && !('withCredentials' in request) &&
         !isURLSameOrigin(config.url)) {
@@ -658,7 +659,7 @@ module.exports = function xhrAdapter(config) {
       var responseData = !config.responseType || config.responseType === 'text' ? request.responseText : request.response;
       var response = {
         data: responseData,
-        // IE sends 1223 instead of 204 (https://github.com/mzabriskie/axios/issues/201)
+        // IE sends 1223 instead of 204 (https://github.com/axios/axios/issues/201)
         status: request.status === 1223 ? 204 : request.status,
         statusText: request.status === 1223 ? 'No Content' : request.statusText,
         headers: responseHeaders,
@@ -19732,15 +19733,15 @@ return t7;
 
 var Component = __webpack_require__(/*! ../~/vue-loader/lib/component-normalizer */ 1)(
   /* script */
-  __webpack_require__(/*! !!../~/vue-loader/lib/selector?type=script&index=0!./main.vue */ 53),
+  __webpack_require__(/*! !!../~/vue-loader/lib/selector?type=script&index=0!./main.vue */ 55),
   /* template */
-  __webpack_require__(/*! !../~/vue-loader/lib/template-compiler/index?{"id":"data-v-e456b18e"}!../~/vue-loader/lib/selector?type=template&index=0!./main.vue */ 58),
+  __webpack_require__(/*! !../~/vue-loader/lib/template-compiler/index?{"id":"data-v-08fd476a"}!../~/vue-loader/lib/selector?type=template&index=0!./main.vue */ 57),
   /* scopeId */
   null,
   /* cssModules */
   null
 )
-Component.options.__file = "/media/niek/b35e4851-7f86-4f74-ace4-35b7509592bd/Code/Bill-mobile/src/main.vue"
+Component.options.__file = "/home/niek/Documents/Code/Bill-mobile-cordova/src/main.vue"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key !== "__esModule"})) {console.error("named exports are not supported in *.vue files.")}
 if (Component.options.functional) {console.error("[vue-loader] main.vue: functional components are not supported with templates, they should use render functions.")}
 
@@ -19751,9 +19752,9 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-e456b18e", Component.options)
+    hotAPI.createRecord("data-v-08fd476a", Component.options)
   } else {
-    hotAPI.reload("data-v-e456b18e", Component.options)
+    hotAPI.reload("data-v-08fd476a", Component.options)
   }
 })()}
 
@@ -19775,7 +19776,7 @@ var content = __webpack_require__(/*! !../../../~/css-loader!../../../~/sass-loa
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
-var update = __webpack_require__(/*! ../../../~/vue-style-loader/lib/addStylesClient.js */ 59)("643f7c64", content, false);
+var update = __webpack_require__(/*! ../../../~/vue-style-loader/lib/addStylesClient.js */ 62)("643f7c64", content, false);
 // Hot Module Replacement
 if(false) {
  // When the styles change, update the <style> tags
@@ -30380,22 +30381,26 @@ module.exports = Vue$3;
     },
     {
         path: '/form/',
-        component: __webpack_require__(/*! ./assets/vue/pages/form.vue */ 47)
+        component: __webpack_require__(/*! ./assets/vue/pages/form.vue */ 48)
     },
     {
         path: '/dynamic-route/blog/:blogId/post/:postId/',
-        component: __webpack_require__(/*! ./assets/vue/pages/dynamic-route.vue */ 46)
+        component: __webpack_require__(/*! ./assets/vue/pages/dynamic-route.vue */ 47)
     },
     {
-        path: '/7dtdserver',
-        component: __webpack_require__(/*! ./assets/vue/pages/sevendtdserver.vue */ 48)
+        path: '/7dtdserver/',
+        component: __webpack_require__(/*! ./assets/vue/pages/sevendtdserver.vue */ 49)
+    },
+    {
+        path: '/configure/',
+        component: __webpack_require__(/*! ./assets/vue/pages/configure.vue */ 46)
     }
 ]);
 
 /***/ }),
 /* 18 */
 /* no static exports found */
-/* exports used: default */
+/* all exports used */
 /*!**************************!*\
   !*** ./~/axios/index.js ***!
   \**************************/
@@ -30552,8 +30557,6 @@ var defaults = __webpack_require__(/*! ./../defaults */ 3);
 var utils = __webpack_require__(/*! ./../utils */ 0);
 var InterceptorManager = __webpack_require__(/*! ./InterceptorManager */ 22);
 var dispatchRequest = __webpack_require__(/*! ./dispatchRequest */ 23);
-var isAbsoluteURL = __webpack_require__(/*! ./../helpers/isAbsoluteURL */ 31);
-var combineURLs = __webpack_require__(/*! ./../helpers/combineURLs */ 29);
 
 /**
  * Create a new instance of Axios
@@ -30584,11 +30587,6 @@ Axios.prototype.request = function request(config) {
 
   config = utils.merge(defaults, this.defaults, { method: 'get' }, config);
   config.method = config.method.toLowerCase();
-
-  // Support baseURL config
-  if (config.baseURL && !isAbsoluteURL(config.url)) {
-    config.url = combineURLs(config.baseURL, config.url);
-  }
 
   // Hook up interceptors middleware
   var chain = [dispatchRequest, undefined];
@@ -30714,6 +30712,8 @@ var utils = __webpack_require__(/*! ./../utils */ 0);
 var transformData = __webpack_require__(/*! ./transformData */ 26);
 var isCancel = __webpack_require__(/*! ../cancel/isCancel */ 6);
 var defaults = __webpack_require__(/*! ../defaults */ 3);
+var isAbsoluteURL = __webpack_require__(/*! ./../helpers/isAbsoluteURL */ 31);
+var combineURLs = __webpack_require__(/*! ./../helpers/combineURLs */ 29);
 
 /**
  * Throws a `Cancel` if cancellation has been requested.
@@ -30732,6 +30732,11 @@ function throwIfCancellationRequested(config) {
  */
 module.exports = function dispatchRequest(config) {
   throwIfCancellationRequested(config);
+
+  // Support baseURL config
+  if (config.baseURL && !isAbsoluteURL(config.url)) {
+    config.url = combineURLs(config.baseURL, config.url);
+  }
 
   // Ensure headers exist
   config.headers = config.headers || {};
@@ -31255,6 +31260,15 @@ module.exports = function normalizeHeaderName(headers, normalizedName) {
 
 var utils = __webpack_require__(/*! ./../utils */ 0);
 
+// Headers whose duplicates are ignored by node
+// c.f. https://nodejs.org/api/http.html#http_message_headers
+var ignoreDuplicateOf = [
+  'age', 'authorization', 'content-length', 'content-type', 'etag',
+  'expires', 'from', 'host', 'if-modified-since', 'if-unmodified-since',
+  'last-modified', 'location', 'max-forwards', 'proxy-authorization',
+  'referer', 'retry-after', 'user-agent'
+];
+
 /**
  * Parse headers into an object
  *
@@ -31282,7 +31296,14 @@ module.exports = function parseHeaders(headers) {
     val = utils.trim(line.substr(i + 1));
 
     if (key) {
-      parsed[key] = parsed[key] ? parsed[key] + ', ' + val : val;
+      if (parsed[key] && ignoreDuplicateOf.indexOf(key) >= 0) {
+        return;
+      }
+      if (key === 'set-cookie') {
+        parsed[key] = (parsed[key] ? parsed[key] : []).concat([val]);
+      } else {
+        parsed[key] = parsed[key] ? parsed[key] + ', ' + val : val;
+      }
     }
   });
 
@@ -31333,6 +31354,132 @@ module.exports = function spread(callback) {
 /* 36 */
 /* no static exports found */
 /* all exports used */
+/*!******************************!*\
+  !*** ./~/base64-js/index.js ***!
+  \******************************/
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+exports.byteLength = byteLength
+exports.toByteArray = toByteArray
+exports.fromByteArray = fromByteArray
+
+var lookup = []
+var revLookup = []
+var Arr = typeof Uint8Array !== 'undefined' ? Uint8Array : Array
+
+var code = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/'
+for (var i = 0, len = code.length; i < len; ++i) {
+  lookup[i] = code[i]
+  revLookup[code.charCodeAt(i)] = i
+}
+
+revLookup['-'.charCodeAt(0)] = 62
+revLookup['_'.charCodeAt(0)] = 63
+
+function placeHoldersCount (b64) {
+  var len = b64.length
+  if (len % 4 > 0) {
+    throw new Error('Invalid string. Length must be a multiple of 4')
+  }
+
+  // the number of equal signs (place holders)
+  // if there are two placeholders, than the two characters before it
+  // represent one byte
+  // if there is only one, then the three characters before it represent 2 bytes
+  // this is just a cheap hack to not do indexOf twice
+  return b64[len - 2] === '=' ? 2 : b64[len - 1] === '=' ? 1 : 0
+}
+
+function byteLength (b64) {
+  // base64 is 4/3 + up to two characters of the original data
+  return (b64.length * 3 / 4) - placeHoldersCount(b64)
+}
+
+function toByteArray (b64) {
+  var i, l, tmp, placeHolders, arr
+  var len = b64.length
+  placeHolders = placeHoldersCount(b64)
+
+  arr = new Arr((len * 3 / 4) - placeHolders)
+
+  // if there are placeholders, only get up to the last complete 4 chars
+  l = placeHolders > 0 ? len - 4 : len
+
+  var L = 0
+
+  for (i = 0; i < l; i += 4) {
+    tmp = (revLookup[b64.charCodeAt(i)] << 18) | (revLookup[b64.charCodeAt(i + 1)] << 12) | (revLookup[b64.charCodeAt(i + 2)] << 6) | revLookup[b64.charCodeAt(i + 3)]
+    arr[L++] = (tmp >> 16) & 0xFF
+    arr[L++] = (tmp >> 8) & 0xFF
+    arr[L++] = tmp & 0xFF
+  }
+
+  if (placeHolders === 2) {
+    tmp = (revLookup[b64.charCodeAt(i)] << 2) | (revLookup[b64.charCodeAt(i + 1)] >> 4)
+    arr[L++] = tmp & 0xFF
+  } else if (placeHolders === 1) {
+    tmp = (revLookup[b64.charCodeAt(i)] << 10) | (revLookup[b64.charCodeAt(i + 1)] << 4) | (revLookup[b64.charCodeAt(i + 2)] >> 2)
+    arr[L++] = (tmp >> 8) & 0xFF
+    arr[L++] = tmp & 0xFF
+  }
+
+  return arr
+}
+
+function tripletToBase64 (num) {
+  return lookup[num >> 18 & 0x3F] + lookup[num >> 12 & 0x3F] + lookup[num >> 6 & 0x3F] + lookup[num & 0x3F]
+}
+
+function encodeChunk (uint8, start, end) {
+  var tmp
+  var output = []
+  for (var i = start; i < end; i += 3) {
+    tmp = (uint8[i] << 16) + (uint8[i + 1] << 8) + (uint8[i + 2])
+    output.push(tripletToBase64(tmp))
+  }
+  return output.join('')
+}
+
+function fromByteArray (uint8) {
+  var tmp
+  var len = uint8.length
+  var extraBytes = len % 3 // if we have 1 byte left, pad 2 bytes
+  var output = ''
+  var parts = []
+  var maxChunkLength = 16383 // must be multiple of 3
+
+  // go through the array every three bytes, we'll deal with trailing stuff later
+  for (var i = 0, len2 = len - extraBytes; i < len2; i += maxChunkLength) {
+    parts.push(encodeChunk(uint8, i, (i + maxChunkLength) > len2 ? len2 : (i + maxChunkLength)))
+  }
+
+  // pad the end with zeros, but make sure to not forget the extra bytes
+  if (extraBytes === 1) {
+    tmp = uint8[len - 1]
+    output += lookup[tmp >> 2]
+    output += lookup[(tmp << 4) & 0x3F]
+    output += '=='
+  } else if (extraBytes === 2) {
+    tmp = (uint8[len - 2] << 8) + (uint8[len - 1])
+    output += lookup[tmp >> 10]
+    output += lookup[(tmp >> 4) & 0x3F]
+    output += lookup[(tmp << 2) & 0x3F]
+    output += '='
+  }
+
+  parts.push(output)
+
+  return parts.join('')
+}
+
+
+/***/ }),
+/* 37 */
+/* no static exports found */
+/* all exports used */
 /*!***************************!*\
   !*** ./~/buffer/index.js ***!
   \***************************/
@@ -31349,7 +31496,7 @@ module.exports = function spread(callback) {
 
 
 
-var base64 = __webpack_require__(/*! base64-js */ 37)
+var base64 = __webpack_require__(/*! base64-js */ 36)
 var ieee754 = __webpack_require__(/*! ieee754 */ 40)
 var isArray = __webpack_require__(/*! isarray */ 42)
 
@@ -33132,132 +33279,6 @@ function isnan (val) {
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! ./../webpack/buildin/global.js */ 2)))
 
 /***/ }),
-/* 37 */
-/* no static exports found */
-/* all exports used */
-/*!***************************************!*\
-  !*** ./~/buffer/~/base64-js/index.js ***!
-  \***************************************/
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-exports.byteLength = byteLength
-exports.toByteArray = toByteArray
-exports.fromByteArray = fromByteArray
-
-var lookup = []
-var revLookup = []
-var Arr = typeof Uint8Array !== 'undefined' ? Uint8Array : Array
-
-var code = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/'
-for (var i = 0, len = code.length; i < len; ++i) {
-  lookup[i] = code[i]
-  revLookup[code.charCodeAt(i)] = i
-}
-
-revLookup['-'.charCodeAt(0)] = 62
-revLookup['_'.charCodeAt(0)] = 63
-
-function placeHoldersCount (b64) {
-  var len = b64.length
-  if (len % 4 > 0) {
-    throw new Error('Invalid string. Length must be a multiple of 4')
-  }
-
-  // the number of equal signs (place holders)
-  // if there are two placeholders, than the two characters before it
-  // represent one byte
-  // if there is only one, then the three characters before it represent 2 bytes
-  // this is just a cheap hack to not do indexOf twice
-  return b64[len - 2] === '=' ? 2 : b64[len - 1] === '=' ? 1 : 0
-}
-
-function byteLength (b64) {
-  // base64 is 4/3 + up to two characters of the original data
-  return (b64.length * 3 / 4) - placeHoldersCount(b64)
-}
-
-function toByteArray (b64) {
-  var i, l, tmp, placeHolders, arr
-  var len = b64.length
-  placeHolders = placeHoldersCount(b64)
-
-  arr = new Arr((len * 3 / 4) - placeHolders)
-
-  // if there are placeholders, only get up to the last complete 4 chars
-  l = placeHolders > 0 ? len - 4 : len
-
-  var L = 0
-
-  for (i = 0; i < l; i += 4) {
-    tmp = (revLookup[b64.charCodeAt(i)] << 18) | (revLookup[b64.charCodeAt(i + 1)] << 12) | (revLookup[b64.charCodeAt(i + 2)] << 6) | revLookup[b64.charCodeAt(i + 3)]
-    arr[L++] = (tmp >> 16) & 0xFF
-    arr[L++] = (tmp >> 8) & 0xFF
-    arr[L++] = tmp & 0xFF
-  }
-
-  if (placeHolders === 2) {
-    tmp = (revLookup[b64.charCodeAt(i)] << 2) | (revLookup[b64.charCodeAt(i + 1)] >> 4)
-    arr[L++] = tmp & 0xFF
-  } else if (placeHolders === 1) {
-    tmp = (revLookup[b64.charCodeAt(i)] << 10) | (revLookup[b64.charCodeAt(i + 1)] << 4) | (revLookup[b64.charCodeAt(i + 2)] >> 2)
-    arr[L++] = (tmp >> 8) & 0xFF
-    arr[L++] = tmp & 0xFF
-  }
-
-  return arr
-}
-
-function tripletToBase64 (num) {
-  return lookup[num >> 18 & 0x3F] + lookup[num >> 12 & 0x3F] + lookup[num >> 6 & 0x3F] + lookup[num & 0x3F]
-}
-
-function encodeChunk (uint8, start, end) {
-  var tmp
-  var output = []
-  for (var i = start; i < end; i += 3) {
-    tmp = (uint8[i] << 16) + (uint8[i + 1] << 8) + (uint8[i + 2])
-    output.push(tripletToBase64(tmp))
-  }
-  return output.join('')
-}
-
-function fromByteArray (uint8) {
-  var tmp
-  var len = uint8.length
-  var extraBytes = len % 3 // if we have 1 byte left, pad 2 bytes
-  var output = ''
-  var parts = []
-  var maxChunkLength = 16383 // must be multiple of 3
-
-  // go through the array every three bytes, we'll deal with trailing stuff later
-  for (var i = 0, len2 = len - extraBytes; i < len2; i += maxChunkLength) {
-    parts.push(encodeChunk(uint8, i, (i + maxChunkLength) > len2 ? len2 : (i + maxChunkLength)))
-  }
-
-  // pad the end with zeros, but make sure to not forget the extra bytes
-  if (extraBytes === 1) {
-    tmp = uint8[len - 1]
-    output += lookup[tmp >> 2]
-    output += lookup[(tmp << 4) & 0x3F]
-    output += '=='
-  } else if (extraBytes === 2) {
-    tmp = (uint8[len - 2] << 8) + (uint8[len - 1])
-    output += lookup[tmp >> 10]
-    output += lookup[(tmp >> 4) & 0x3F]
-    output += lookup[(tmp << 2) & 0x3F]
-    output += '='
-  }
-
-  parts.push(output)
-
-  return parts.join('')
-}
-
-
-/***/ }),
 /* 38 */
 /* no static exports found */
 /* all exports used */
@@ -33361,7 +33382,7 @@ function toComment(sourceMap) {
   return '/*# ' + data + ' */';
 }
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! ./../../buffer/index.js */ 36).Buffer))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! ./../../buffer/index.js */ 37).Buffer))
 
 /***/ }),
 /* 40 */
@@ -33779,15 +33800,15 @@ exports.clearImmediate = clearImmediate;
 
 var Component = __webpack_require__(/*! ../../../../~/vue-loader/lib/component-normalizer */ 1)(
   /* script */
-  __webpack_require__(/*! !!../../../../~/vue-loader/lib/selector?type=script&index=0!./about.vue */ 49),
+  __webpack_require__(/*! !!../../../../~/vue-loader/lib/selector?type=script&index=0!./about.vue */ 50),
   /* template */
-  __webpack_require__(/*! !../../../../~/vue-loader/lib/template-compiler/index?{"id":"data-v-06fdad26"}!../../../../~/vue-loader/lib/selector?type=template&index=0!./about.vue */ 54),
+  __webpack_require__(/*! !../../../../~/vue-loader/lib/template-compiler/index?{"id":"data-v-4f430144"}!../../../../~/vue-loader/lib/selector?type=template&index=0!./about.vue */ 59),
   /* scopeId */
   null,
   /* cssModules */
   null
 )
-Component.options.__file = "/media/niek/b35e4851-7f86-4f74-ace4-35b7509592bd/Code/Bill-mobile/src/assets/vue/pages/about.vue"
+Component.options.__file = "/home/niek/Documents/Code/Bill-mobile-cordova/src/assets/vue/pages/about.vue"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key !== "__esModule"})) {console.error("named exports are not supported in *.vue files.")}
 if (Component.options.functional) {console.error("[vue-loader] about.vue: functional components are not supported with templates, they should use render functions.")}
 
@@ -33798,9 +33819,9 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-06fdad26", Component.options)
+    hotAPI.createRecord("data-v-4f430144", Component.options)
   } else {
-    hotAPI.reload("data-v-06fdad26", Component.options)
+    hotAPI.reload("data-v-4f430144", Component.options)
   }
 })()}
 
@@ -33811,24 +33832,24 @@ module.exports = Component.exports
 /* 46 */
 /* no static exports found */
 /* all exports used */
-/*!************************************************!*\
-  !*** ./src/assets/vue/pages/dynamic-route.vue ***!
-  \************************************************/
+/*!********************************************!*\
+  !*** ./src/assets/vue/pages/configure.vue ***!
+  \********************************************/
 /***/ (function(module, exports, __webpack_require__) {
 
 var Component = __webpack_require__(/*! ../../../../~/vue-loader/lib/component-normalizer */ 1)(
   /* script */
-  __webpack_require__(/*! !!../../../../~/vue-loader/lib/selector?type=script&index=0!./dynamic-route.vue */ 50),
+  __webpack_require__(/*! !!../../../../~/vue-loader/lib/selector?type=script&index=0!./configure.vue */ 51),
   /* template */
-  __webpack_require__(/*! !../../../../~/vue-loader/lib/template-compiler/index?{"id":"data-v-42fcf21b"}!../../../../~/vue-loader/lib/selector?type=template&index=0!./dynamic-route.vue */ 57),
+  __webpack_require__(/*! !../../../../~/vue-loader/lib/template-compiler/index?{"id":"data-v-6050e5b7"}!../../../../~/vue-loader/lib/selector?type=template&index=0!./configure.vue */ 60),
   /* scopeId */
   null,
   /* cssModules */
   null
 )
-Component.options.__file = "/media/niek/b35e4851-7f86-4f74-ace4-35b7509592bd/Code/Bill-mobile/src/assets/vue/pages/dynamic-route.vue"
+Component.options.__file = "/home/niek/Documents/Code/Bill-mobile-cordova/src/assets/vue/pages/configure.vue"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key !== "__esModule"})) {console.error("named exports are not supported in *.vue files.")}
-if (Component.options.functional) {console.error("[vue-loader] dynamic-route.vue: functional components are not supported with templates, they should use render functions.")}
+if (Component.options.functional) {console.error("[vue-loader] configure.vue: functional components are not supported with templates, they should use render functions.")}
 
 /* hot reload */
 if (false) {(function () {
@@ -33837,9 +33858,9 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-42fcf21b", Component.options)
+    hotAPI.createRecord("data-v-6050e5b7", Component.options)
   } else {
-    hotAPI.reload("data-v-42fcf21b", Component.options)
+    hotAPI.reload("data-v-6050e5b7", Component.options)
   }
 })()}
 
@@ -33850,24 +33871,24 @@ module.exports = Component.exports
 /* 47 */
 /* no static exports found */
 /* all exports used */
-/*!***************************************!*\
-  !*** ./src/assets/vue/pages/form.vue ***!
-  \***************************************/
+/*!************************************************!*\
+  !*** ./src/assets/vue/pages/dynamic-route.vue ***!
+  \************************************************/
 /***/ (function(module, exports, __webpack_require__) {
 
 var Component = __webpack_require__(/*! ../../../../~/vue-loader/lib/component-normalizer */ 1)(
   /* script */
-  __webpack_require__(/*! !!../../../../~/vue-loader/lib/selector?type=script&index=0!./form.vue */ 51),
+  __webpack_require__(/*! !!../../../../~/vue-loader/lib/selector?type=script&index=0!./dynamic-route.vue */ 52),
   /* template */
-  __webpack_require__(/*! !../../../../~/vue-loader/lib/template-compiler/index?{"id":"data-v-1550fad8"}!../../../../~/vue-loader/lib/selector?type=template&index=0!./form.vue */ 55),
+  __webpack_require__(/*! !../../../../~/vue-loader/lib/template-compiler/index?{"id":"data-v-3f21c70c"}!../../../../~/vue-loader/lib/selector?type=template&index=0!./dynamic-route.vue */ 58),
   /* scopeId */
   null,
   /* cssModules */
   null
 )
-Component.options.__file = "/media/niek/b35e4851-7f86-4f74-ace4-35b7509592bd/Code/Bill-mobile/src/assets/vue/pages/form.vue"
+Component.options.__file = "/home/niek/Documents/Code/Bill-mobile-cordova/src/assets/vue/pages/dynamic-route.vue"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key !== "__esModule"})) {console.error("named exports are not supported in *.vue files.")}
-if (Component.options.functional) {console.error("[vue-loader] form.vue: functional components are not supported with templates, they should use render functions.")}
+if (Component.options.functional) {console.error("[vue-loader] dynamic-route.vue: functional components are not supported with templates, they should use render functions.")}
 
 /* hot reload */
 if (false) {(function () {
@@ -33876,9 +33897,9 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-1550fad8", Component.options)
+    hotAPI.createRecord("data-v-3f21c70c", Component.options)
   } else {
-    hotAPI.reload("data-v-1550fad8", Component.options)
+    hotAPI.reload("data-v-3f21c70c", Component.options)
   }
 })()}
 
@@ -33889,6 +33910,45 @@ module.exports = Component.exports
 /* 48 */
 /* no static exports found */
 /* all exports used */
+/*!***************************************!*\
+  !*** ./src/assets/vue/pages/form.vue ***!
+  \***************************************/
+/***/ (function(module, exports, __webpack_require__) {
+
+var Component = __webpack_require__(/*! ../../../../~/vue-loader/lib/component-normalizer */ 1)(
+  /* script */
+  __webpack_require__(/*! !!../../../../~/vue-loader/lib/selector?type=script&index=0!./form.vue */ 53),
+  /* template */
+  __webpack_require__(/*! !../../../../~/vue-loader/lib/template-compiler/index?{"id":"data-v-0721aafa"}!../../../../~/vue-loader/lib/selector?type=template&index=0!./form.vue */ 56),
+  /* scopeId */
+  null,
+  /* cssModules */
+  null
+)
+Component.options.__file = "/home/niek/Documents/Code/Bill-mobile-cordova/src/assets/vue/pages/form.vue"
+if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key !== "__esModule"})) {console.error("named exports are not supported in *.vue files.")}
+if (Component.options.functional) {console.error("[vue-loader] form.vue: functional components are not supported with templates, they should use render functions.")}
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-0721aafa", Component.options)
+  } else {
+    hotAPI.reload("data-v-0721aafa", Component.options)
+  }
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 49 */
+/* no static exports found */
+/* all exports used */
 /*!*************************************************!*\
   !*** ./src/assets/vue/pages/sevendtdserver.vue ***!
   \*************************************************/
@@ -33896,15 +33956,15 @@ module.exports = Component.exports
 
 var Component = __webpack_require__(/*! ../../../../~/vue-loader/lib/component-normalizer */ 1)(
   /* script */
-  __webpack_require__(/*! !!../../../../~/vue-loader/lib/selector?type=script&index=0!./sevendtdserver.vue */ 52),
+  __webpack_require__(/*! !!../../../../~/vue-loader/lib/selector?type=script&index=0!./sevendtdserver.vue */ 54),
   /* template */
-  __webpack_require__(/*! !../../../../~/vue-loader/lib/template-compiler/index?{"id":"data-v-3ef51d0c"}!../../../../~/vue-loader/lib/selector?type=template&index=0!./sevendtdserver.vue */ 56),
+  __webpack_require__(/*! !../../../../~/vue-loader/lib/template-compiler/index?{"id":"data-v-68fb3aa9"}!../../../../~/vue-loader/lib/selector?type=template&index=0!./sevendtdserver.vue */ 61),
   /* scopeId */
   null,
   /* cssModules */
   null
 )
-Component.options.__file = "/media/niek/b35e4851-7f86-4f74-ace4-35b7509592bd/Code/Bill-mobile/src/assets/vue/pages/sevendtdserver.vue"
+Component.options.__file = "/home/niek/Documents/Code/Bill-mobile-cordova/src/assets/vue/pages/sevendtdserver.vue"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key !== "__esModule"})) {console.error("named exports are not supported in *.vue files.")}
 if (Component.options.functional) {console.error("[vue-loader] sevendtdserver.vue: functional components are not supported with templates, they should use render functions.")}
 
@@ -33915,9 +33975,9 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-3ef51d0c", Component.options)
+    hotAPI.createRecord("data-v-68fb3aa9", Component.options)
   } else {
-    hotAPI.reload("data-v-3ef51d0c", Component.options)
+    hotAPI.reload("data-v-68fb3aa9", Component.options)
   }
 })()}
 
@@ -33925,7 +33985,7 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 49 */
+/* 50 */
 /* exports provided: default */
 /* all exports used */
 /*!*******************************************************************************************!*\
@@ -33952,7 +34012,31 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
 /***/ }),
-/* 50 */
+/* 51 */
+/* exports provided: default */
+/* all exports used */
+/*!***********************************************************************************************!*\
+  !*** ./~/vue-loader/lib/selector.js?type=script&index=0!./src/assets/vue/pages/configure.vue ***!
+  \***********************************************************************************************/
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({});
+
+
+/***/ }),
+/* 52 */
 /* exports provided: default */
 /* all exports used */
 /*!***************************************************************************************************!*\
@@ -33995,7 +34079,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
 /***/ }),
-/* 51 */
+/* 53 */
 /* exports provided: default */
 /* all exports used */
 /*!******************************************************************************************!*\
@@ -34139,7 +34223,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
 /***/ }),
-/* 52 */
+/* 54 */
 /* exports provided: default */
 /* all exports used */
 /*!****************************************************************************************************!*\
@@ -34149,8 +34233,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_axios__ = __webpack_require__(/*! axios */ 18);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_axios___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_axios__);
 //
 //
 //
@@ -34168,33 +34250,32 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-
-
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data() {
     return {
       getStatsData: "test",
       errors: []
-    }
+    };
   },
-
-  // Fetches posts when the component is created.
   created() {
-    __WEBPACK_IMPORTED_MODULE_0_axios___default.a.get(`http://localhost:3000/api/getstats?guild=317995576958648321`)
-    .then(response => {
-      this.getStatsData = response
-    })
-    .catch(e => {
-        console.log(e)
-      this.errors.push(e)
-    })
+    const axios = __webpack_require__(/*! axios */ 18);
+    axios
+      .get(`http://localhost:3000/api/getstats?guild=317995576958648321`)
+      .then(response => {
+        console.log("Request succes");
+        this.getStatsData = response;
+      })
+      .catch(e => {
+        console.log(e);
+        this.errors.push(e);
+      });
   }
 });
 
 
 /***/ }),
-/* 53 */
+/* 55 */
 /* exports provided: default */
 /* all exports used */
 /*!*************************************************************************!*\
@@ -34311,45 +34392,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
 /***/ }),
-/* 54 */
-/* no static exports found */
-/* all exports used */
-/*!***********************************************************************************************************************************************************!*\
-  !*** ./~/vue-loader/lib/template-compiler?{"id":"data-v-06fdad26"}!./~/vue-loader/lib/selector.js?type=template&index=0!./src/assets/vue/pages/about.vue ***!
-  \***********************************************************************************************************************************************************/
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('f7-page', [_c('f7-navbar', {
-    attrs: {
-      "title": "About",
-      "back-link": "Back",
-      "sliding": ""
-    }
-  }), _vm._v(" "), _c('f7-block', {
-    attrs: {
-      "inner": ""
-    }
-  }, [_c('p', [_vm._v("Here is About page!")]), _vm._v(" "), _c('p', [_vm._v("You can go "), _c('f7-link', {
-    attrs: {
-      "back": ""
-    }
-  }, [_vm._v("back")]), _vm._v(".")], 1), _vm._v(" "), _c('p', [_vm._v("Mauris posuere sit amet metus id venenatis. Ut ante dolor, tempor nec commodo rutrum, varius at sem. Nullam ac nisi non neque ornare pretium. Nulla mauris mauris, consequat et elementum sit amet, egestas sed orci. In hac habitasse platea dictumst.")]), _vm._v(" "), _c('p', [_vm._v("Fusce eros lectus, accumsan eget mi vel, iaculis tincidunt felis. Nulla tincidunt pharetra sagittis. Fusce in felis eros. Nulla sit amet aliquam lorem, et gravida ipsum. Mauris consectetur nisl non sollicitudin tristique. Praesent vitae metus ac quam rhoncus mattis vel et nisi. Aenean aliquet, felis quis dignissim iaculis, lectus quam tincidunt ligula, et venenatis turpis risus sed lorem. Morbi eu metus elit. Ut vel diam dolor.")])])], 1)
-},staticRenderFns: []}
-module.exports.render._withStripped = true
-if (false) {
-  module.hot.accept()
-  if (module.hot.data) {
-     require("vue-hot-reload-api").rerender("data-v-06fdad26", module.exports)
-  }
-}
-
-/***/ }),
-/* 55 */
+/* 56 */
 /* no static exports found */
 /* all exports used */
 /*!**********************************************************************************************************************************************************!*\
-  !*** ./~/vue-loader/lib/template-compiler?{"id":"data-v-1550fad8"}!./~/vue-loader/lib/selector.js?type=template&index=0!./src/assets/vue/pages/form.vue ***!
+  !*** ./~/vue-loader/lib/template-compiler?{"id":"data-v-0721aafa"}!./~/vue-loader/lib/selector.js?type=template&index=0!./src/assets/vue/pages/form.vue ***!
   \**********************************************************************************************************************************************************/
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -34587,41 +34634,7 @@ module.exports.render._withStripped = true
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
-     require("vue-hot-reload-api").rerender("data-v-1550fad8", module.exports)
-  }
-}
-
-/***/ }),
-/* 56 */
-/* no static exports found */
-/* all exports used */
-/*!********************************************************************************************************************************************************************!*\
-  !*** ./~/vue-loader/lib/template-compiler?{"id":"data-v-3ef51d0c"}!./~/vue-loader/lib/selector.js?type=template&index=0!./src/assets/vue/pages/sevendtdserver.vue ***!
-  \********************************************************************************************************************************************************************/
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('f7-page', [_c('f7-navbar', {
-    attrs: {
-      "title": "El Server",
-      "back-link": "Back",
-      "sliding": ""
-    }
-  }), _vm._v(" "), _c('f7-block', {
-    attrs: {
-      "inner": ""
-    }
-  }, [_c('p', [_vm._v("This is some info about Elanio's server")])]), _vm._v(" "), _c('f7-block', {
-    attrs: {
-      "inner": ""
-    }
-  }, [_c('p', [_vm._v(_vm._s(_vm.getStatsData))]), _vm._v(" "), _c('p', [_c('strong', [_vm._v("Errors")]), _vm._v(" "), _c('br'), _vm._v(" " + _vm._s(_vm.errors))])])], 1)
-},staticRenderFns: []}
-module.exports.render._withStripped = true
-if (false) {
-  module.hot.accept()
-  if (module.hot.data) {
-     require("vue-hot-reload-api").rerender("data-v-3ef51d0c", module.exports)
+     require("vue-hot-reload-api").rerender("data-v-0721aafa", module.exports)
   }
 }
 
@@ -34629,56 +34642,8 @@ if (false) {
 /* 57 */
 /* no static exports found */
 /* all exports used */
-/*!*******************************************************************************************************************************************************************!*\
-  !*** ./~/vue-loader/lib/template-compiler?{"id":"data-v-42fcf21b"}!./~/vue-loader/lib/selector.js?type=template&index=0!./src/assets/vue/pages/dynamic-route.vue ***!
-  \*******************************************************************************************************************************************************************/
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('f7-page', [_c('f7-navbar', {
-    attrs: {
-      "title": "Dynamic Route",
-      "back-link": "Back",
-      "sliding": ""
-    }
-  }), _vm._v(" "), _c('f7-block', {
-    attrs: {
-      "inner": ""
-    }
-  }, [_c('ul', [_c('li', [_c('b', [_vm._v("Url:")]), _vm._v(" " + _vm._s(_vm.$route.url))]), _vm._v(" "), _c('li', [_c('b', [_vm._v("Path:")]), _vm._v(" " + _vm._s(_vm.$route.path))]), _vm._v(" "), _c('li', [_c('b', [_vm._v("Hash:")]), _vm._v(" " + _vm._s(_vm.$route.hash))]), _vm._v(" "), _c('li', [_c('b', [_vm._v("Params:")]), _vm._v(" "), _c('ul', _vm._l((_vm.$route.params), function(value, key) {
-    return _c('li', {
-      key: 'param-' + key
-    }, [_c('b', [_vm._v(_vm._s(key) + ":")]), _vm._v(" " + _vm._s(value))])
-  }))]), _vm._v(" "), _c('li', [_c('b', [_vm._v("Query:")]), _vm._v(" "), _c('ul', _vm._l((_vm.$route.query), function(value, key) {
-    return _c('li', {
-      key: 'query-' + key
-    }, [_c('b', [_vm._v(_vm._s(key) + ":")]), _vm._v(" " + _vm._s(value))])
-  }))]), _vm._v(" "), _c('li', [_c('b', [_vm._v("Route:")]), _vm._v(" " + _vm._s(_vm.$route.route))])])]), _vm._v(" "), _c('f7-block', {
-    attrs: {
-      "inner": ""
-    }
-  }, [_c('f7-link', {
-    on: {
-      "click": function($event) {
-        _vm.$router.back()
-      }
-    }
-  }, [_vm._v("Go back via Router API")])], 1)], 1)
-},staticRenderFns: []}
-module.exports.render._withStripped = true
-if (false) {
-  module.hot.accept()
-  if (module.hot.data) {
-     require("vue-hot-reload-api").rerender("data-v-42fcf21b", module.exports)
-  }
-}
-
-/***/ }),
-/* 58 */
-/* no static exports found */
-/* all exports used */
 /*!*****************************************************************************************************************************************!*\
-  !*** ./~/vue-loader/lib/template-compiler?{"id":"data-v-e456b18e"}!./~/vue-loader/lib/selector.js?type=template&index=0!./src/main.vue ***!
+  !*** ./~/vue-loader/lib/template-compiler?{"id":"data-v-08fd476a"}!./~/vue-loader/lib/selector.js?type=template&index=0!./src/main.vue ***!
   \*****************************************************************************************************************************************/
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -34753,8 +34718,8 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     }
   }), _vm._v(" "), _c('f7-list-item', {
     attrs: {
-      "link": "/form/",
-      "title": "Form"
+      "link": "/configure/",
+      "title": "Configure"
     }
   }), _vm._v(" "), _c('f7-list-item', {
     attrs: {
@@ -34812,12 +34777,158 @@ module.exports.render._withStripped = true
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
-     require("vue-hot-reload-api").rerender("data-v-e456b18e", module.exports)
+     require("vue-hot-reload-api").rerender("data-v-08fd476a", module.exports)
+  }
+}
+
+/***/ }),
+/* 58 */
+/* no static exports found */
+/* all exports used */
+/*!*******************************************************************************************************************************************************************!*\
+  !*** ./~/vue-loader/lib/template-compiler?{"id":"data-v-3f21c70c"}!./~/vue-loader/lib/selector.js?type=template&index=0!./src/assets/vue/pages/dynamic-route.vue ***!
+  \*******************************************************************************************************************************************************************/
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('f7-page', [_c('f7-navbar', {
+    attrs: {
+      "title": "Dynamic Route",
+      "back-link": "Back",
+      "sliding": ""
+    }
+  }), _vm._v(" "), _c('f7-block', {
+    attrs: {
+      "inner": ""
+    }
+  }, [_c('ul', [_c('li', [_c('b', [_vm._v("Url:")]), _vm._v(" " + _vm._s(_vm.$route.url))]), _vm._v(" "), _c('li', [_c('b', [_vm._v("Path:")]), _vm._v(" " + _vm._s(_vm.$route.path))]), _vm._v(" "), _c('li', [_c('b', [_vm._v("Hash:")]), _vm._v(" " + _vm._s(_vm.$route.hash))]), _vm._v(" "), _c('li', [_c('b', [_vm._v("Params:")]), _vm._v(" "), _c('ul', _vm._l((_vm.$route.params), function(value, key) {
+    return _c('li', {
+      key: 'param-' + key
+    }, [_c('b', [_vm._v(_vm._s(key) + ":")]), _vm._v(" " + _vm._s(value))])
+  }))]), _vm._v(" "), _c('li', [_c('b', [_vm._v("Query:")]), _vm._v(" "), _c('ul', _vm._l((_vm.$route.query), function(value, key) {
+    return _c('li', {
+      key: 'query-' + key
+    }, [_c('b', [_vm._v(_vm._s(key) + ":")]), _vm._v(" " + _vm._s(value))])
+  }))]), _vm._v(" "), _c('li', [_c('b', [_vm._v("Route:")]), _vm._v(" " + _vm._s(_vm.$route.route))])])]), _vm._v(" "), _c('f7-block', {
+    attrs: {
+      "inner": ""
+    }
+  }, [_c('f7-link', {
+    on: {
+      "click": function($event) {
+        _vm.$router.back()
+      }
+    }
+  }, [_vm._v("Go back via Router API")])], 1)], 1)
+},staticRenderFns: []}
+module.exports.render._withStripped = true
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+     require("vue-hot-reload-api").rerender("data-v-3f21c70c", module.exports)
   }
 }
 
 /***/ }),
 /* 59 */
+/* no static exports found */
+/* all exports used */
+/*!***********************************************************************************************************************************************************!*\
+  !*** ./~/vue-loader/lib/template-compiler?{"id":"data-v-4f430144"}!./~/vue-loader/lib/selector.js?type=template&index=0!./src/assets/vue/pages/about.vue ***!
+  \***********************************************************************************************************************************************************/
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('f7-page', [_c('f7-navbar', {
+    attrs: {
+      "title": "About",
+      "back-link": "Back",
+      "sliding": ""
+    }
+  }), _vm._v(" "), _c('f7-block', {
+    attrs: {
+      "inner": ""
+    }
+  }, [_c('p', [_vm._v("Here is About page!")]), _vm._v(" "), _c('p', [_vm._v("You can go "), _c('f7-link', {
+    attrs: {
+      "back": ""
+    }
+  }, [_vm._v("back")]), _vm._v(".")], 1), _vm._v(" "), _c('p', [_vm._v("Mauris posuere sit amet metus id venenatis. Ut ante dolor, tempor nec commodo rutrum, varius at sem. Nullam ac nisi non neque ornare pretium. Nulla mauris mauris, consequat et elementum sit amet, egestas sed orci. In hac habitasse platea dictumst.")]), _vm._v(" "), _c('p', [_vm._v("Fusce eros lectus, accumsan eget mi vel, iaculis tincidunt felis. Nulla tincidunt pharetra sagittis. Fusce in felis eros. Nulla sit amet aliquam lorem, et gravida ipsum. Mauris consectetur nisl non sollicitudin tristique. Praesent vitae metus ac quam rhoncus mattis vel et nisi. Aenean aliquet, felis quis dignissim iaculis, lectus quam tincidunt ligula, et venenatis turpis risus sed lorem. Morbi eu metus elit. Ut vel diam dolor.")])])], 1)
+},staticRenderFns: []}
+module.exports.render._withStripped = true
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+     require("vue-hot-reload-api").rerender("data-v-4f430144", module.exports)
+  }
+}
+
+/***/ }),
+/* 60 */
+/* no static exports found */
+/* all exports used */
+/*!***************************************************************************************************************************************************************!*\
+  !*** ./~/vue-loader/lib/template-compiler?{"id":"data-v-6050e5b7"}!./~/vue-loader/lib/selector.js?type=template&index=0!./src/assets/vue/pages/configure.vue ***!
+  \***************************************************************************************************************************************************************/
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('f7-page', [_c('f7-navbar', {
+    attrs: {
+      "title": "Configuration",
+      "back-link": "Back",
+      "sliding": ""
+    }
+  }), _vm._v(" "), _c('f7-block', {
+    attrs: {
+      "inner": ""
+    }
+  }, [_c('p', [_vm._v("CONFIG")])])], 1)
+},staticRenderFns: []}
+module.exports.render._withStripped = true
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+     require("vue-hot-reload-api").rerender("data-v-6050e5b7", module.exports)
+  }
+}
+
+/***/ }),
+/* 61 */
+/* no static exports found */
+/* all exports used */
+/*!********************************************************************************************************************************************************************!*\
+  !*** ./~/vue-loader/lib/template-compiler?{"id":"data-v-68fb3aa9"}!./~/vue-loader/lib/selector.js?type=template&index=0!./src/assets/vue/pages/sevendtdserver.vue ***!
+  \********************************************************************************************************************************************************************/
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('f7-page', [_c('f7-navbar', {
+    attrs: {
+      "title": "El Server",
+      "back-link": "Back",
+      "sliding": ""
+    }
+  }), _vm._v(" "), _c('f7-block', {
+    attrs: {
+      "inner": ""
+    }
+  }, [_c('p', [_vm._v("This is some info about Elanio's server")])]), _vm._v(" "), _c('f7-block', {
+    attrs: {
+      "inner": ""
+    }
+  }, [_c('p', [_vm._v(_vm._s(_vm.getStats))]), _vm._v(" "), _c('p', [_c('strong', [_vm._v("Errors")]), _vm._v(" "), _c('br'), _vm._v(" " + _vm._s(_vm.errors))])])], 1)
+},staticRenderFns: []}
+module.exports.render._withStripped = true
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+     require("vue-hot-reload-api").rerender("data-v-68fb3aa9", module.exports)
+  }
+}
+
+/***/ }),
+/* 62 */
 /* no static exports found */
 /* all exports used */
 /*!***************************************************!*\
@@ -34841,7 +34952,7 @@ if (typeof DEBUG !== 'undefined' && DEBUG) {
   ) }
 }
 
-var listToStyles = __webpack_require__(/*! ./listToStyles */ 60)
+var listToStyles = __webpack_require__(/*! ./listToStyles */ 63)
 
 /*
 type StyleObject = {
@@ -35043,7 +35154,7 @@ function applyToTag (styleElement, obj) {
 
 
 /***/ }),
-/* 60 */
+/* 63 */
 /* no static exports found */
 /* all exports used */
 /*!************************************************!*\
@@ -35081,7 +35192,7 @@ module.exports = function listToStyles (parentId, list) {
 
 
 /***/ }),
-/* 61 */
+/* 64 */
 /* no static exports found */
 /* all exports used */
 /*!*********************!*\

@@ -8,7 +8,7 @@
         </f7-block>
 
         <f7-block inner>
-            <p>{{getStatsData}}</p>
+            <p>{{getStats}}</p>
             <p>
                 <strong>Errors</strong> <br> {{errors}}</p>
         </f7-block>
@@ -16,26 +16,25 @@
 </template>
 
 <script>
-import axios from 'axios';
-
 export default {
   data() {
     return {
       getStatsData: "test",
       errors: []
-    }
+    };
   },
-
-  // Fetches posts when the component is created.
   created() {
-    axios.get(`http://localhost:3000/api/getstats?guild=317995576958648321`)
-    .then(response => {
-      this.getStatsData = response
-    })
-    .catch(e => {
-        console.log(e)
-      this.errors.push(e)
-    })
+    const axios = require("axios");
+    axios
+      .get(`http://localhost:3000/api/getstats?guild=317995576958648321`)
+      .then(response => {
+        console.log("Request succes");
+        this.getStatsData = response;
+      })
+      .catch(e => {
+        console.log(e);
+        this.errors.push(e);
+      });
   }
-}
+};
 </script>
