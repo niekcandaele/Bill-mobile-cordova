@@ -18,6 +18,8 @@
 						<f7-list>
 							<f7-list-item link="/about/" title="About" link-view="#main-view" link-close-panel></f7-list-item>
 							<f7-list-item link="/form/" title="Form" link-view="#main-view" link-close-panel></f7-list-item>
+							<f7-list-item link="/sevendtdserver/" title="Your server" link-view="#main-view" link-close-panel></f7-list-item>
+							<f7-list-item link="/configure/" title="Configure" link-view="#main-view" link-close-panel></f7-list-item>
 						</f7-list>
 					</f7-page>
 				</f7-pages>
