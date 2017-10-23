@@ -94,3 +94,7 @@ typings/
 
 # dotenv environment variables file
 .env
+
+# ignore platform and plugins folders
+.plugins/
+.platforms/
