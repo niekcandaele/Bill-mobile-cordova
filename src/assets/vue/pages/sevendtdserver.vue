@@ -8,7 +8,6 @@
         </f7-block>
 
         <f7-block inner>
-            <p>{{getStats}}</p>
             <p>
                 <strong>Errors</strong> <br> {{errors}}</p>
         </f7-block>

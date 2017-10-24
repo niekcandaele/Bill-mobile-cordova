@@ -1,10 +1,6 @@
 <template>
 <f7-page>
     <f7-navbar title="Configuration" back-link="Back" sliding></f7-navbar>
-    <f7-block inner>
-        <p>CONFIG</p>
-        </f7-block>
-
     <f7-block>
         <f7-list form class="store-data" id="configForm">
             <f7-list-item>
@@ -24,21 +20,29 @@
                 <f7-input v-model="authToken" type="text" :placeholder="authToken" name="authToken"></f7-input>
             </f7-list-item>
         </f7-list>
+
+      <f7-button @click="saveData()" color="green" round> Save config
+        </f7-button>
     </f7-block>
 </f7-page>
 </template>
 
 <script>
-
 export default {
   data() {
     return {
-      message: "test",
-      serverIP: "ip",
-      webPort: "port",
-      authName: "name",
-      authToken: "token"
+      serverIP: "",
+      webPort: "",
+      authName: "",
+      authToken: ""
     };
+  },
+  methods: {
+    saveData: function() {
+      if (this.serverIP) {
+          
+      }
+    }
   }
 };
 </script>

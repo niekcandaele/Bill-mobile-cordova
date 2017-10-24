@@ -24,6 +24,9 @@ import Routes from './routes.js'
 // Import App Component
 import App from './main.vue'
 
+// Import storage API
+import localforage from 'localforage';
+
 // Init F7 Vue Plugin
 Vue.use(Framework7Vue)
 
@@ -41,5 +44,10 @@ new Vue({
     // Register App Component
     components: {
         app: App
+    },
+    data() {
+        return {
+            message: 'hello mr. magoo'
+        }
     }
 })
