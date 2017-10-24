@@ -11,5 +11,9 @@
       "PACKAGE_NAME": "com.ndaele.billMobile"
     }
   },
-  "dependent_plugins": {}
+  "dependent_plugins": {
+    "cordova-plugin-browsersync": {
+      "PACKAGE_NAME": "com.ndaele.billMobile"
+    }
+  }
 }

@@ -38,7 +38,7 @@
 					<f7-page>
 						<f7-block-title>Welcome to my App</f7-block-title>
 						<f7-block inner>
-							<p>Duis sed erat ac eros ultrices pharetra id ut tellus. Praesent rhoncus enim ornare ipsum aliquet ultricies. Pellentesque sodales erat quis elementum sagittis.</p>
+							<p>testing</p>
 						</f7-block>
 						<f7-block-title>Navigation</f7-block-title>
 						<f7-list>
