@@ -1,5 +1,6 @@
 // Initialize app
 var myApp = new Framework7();
+var storage = window.localStorage;
 
 
 // If we need to use custom DOM library, let's save it to $$ variable:
@@ -12,56 +13,72 @@ var mainView = myApp.addView('.view-main', {
 });
 
 // Handle Cordova Device Ready Event
-$$(document).on('deviceready', function() {
+$$(document).on('deviceready', function () {
     console.log("Device is ready!");
 });
 
 
 // Now we need to run the code that will be executed only for About page.
-
-// Option 1. Using page callback for page (for "about" page in this case) (recommended way):
+// Using page callback for page (for "about" page in this case) (recommended way):
 myApp.onPageInit('about', function (page) {
     // Do something here for "about" page
-
 })
 
-
-$$('#addServer-form').submit(function(event) {
-    addServer()
-    console.log('submitted form')
-    return false
-})
-
-function addServer(data) {
+async function addServer() {
     var formData = myApp.formToData('#addServer-form')
-    let user
+    try {
+        let user = await sendUserPOST();
+        let server = await sendServerPOST(user);
+        return console.log('ready');
+    } catch (error) {
+        alert(`Error configuring your server! ${error}`)
+    }
 
 
-    $$.post('http://localhost:1337/user', {
-        steamId: Math.floor((Math.random() * 1000000) + 1),
-        username: formData.username
-    }, function success(response, status, xhr) {
-        console.log('Created a new user')
-        user = response
-        $$.post('http://localhost:1337/api/sdtdserver/addserver', {
-            serverip: formData.serverip,
-            telnetport: formData.telnetport,
-            telnetpassword: formData.telnetpassword,
-            webport: formData.webport,
-            ownerid: user.id
-        }, function success(response, status, xhr) {
-            console.log('Added server')
-            console.log(response)
-        }, function error(response, status) {
-            console.log('error adding server')
-            console.log(response)
+    function sendUserPOST() {
+        return new Promise(resolve => {
+            $$.post('https://csmm.herokuapp.com/user', {
+                steamId: Math.floor((Math.random() * 1000000) + 1),
+                username: formData.username
+            }, function success(response, status, xhr) {
+                storage.setItem('user', user);
+                resolve(JSON.parse(response))
+            }, function error(xhr, status) {
+                throw new Error(`Error performing request, status: ${status}`)
+            })
         })
-    }, function error(response, status) {
-        console.log('Error creating a user')
-        console.log(response)
-        alert(status)
-    })
+    }
+
+    function sendServerPOST(user) {
+        return new Promise(resolve => {
+            $$.post('https://csmm.herokuapp.com/api/sdtdserver/addserver', {
+                serverip: formData.serverip,
+                telnetport: formData.telnetport,
+                telnetpassword: formData.telnetpassword,
+                webport: formData.webport,
+                ownerid: user.id
+            }, function success(response, status, xhr) {
+                storage.setItem('server', server)
+                resolve(JSON.parse(response))
+            }, function error(response, status) {
+                throw new Error(`Error performing request, status: ${status}`)
+            })
+        })
+    }
+
+    function sendPlayersGET() {
+        let server = storage.getItem('server')
+        $$.get("https://csmm.herokuapp.com/api/sdtdserver/players", {
+            serverId: server.id
+        }, function success(response, status, xhr) {
+
+        }, function error(response, status) {
+            
+        })
+    }
 
 
-   
+
+
+
 }

@@ -11,7 +11,7 @@
             * Disables use of inline scripts in order to mitigate risk of XSS vulnerabilities. To change this:
                 * Enable inline JS: add 'unsafe-inline' to default-src
         -->
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: https://ssl.gstatic.com 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *; connect-src 'self' localhost:1337">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self' 'unsafe-inline' data: gap: https://ssl.gstatic.com 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *; connect-src 'self' localhost:1337">
 
     <!-- Required meta tags-->
     <meta charset="utf-8">
@@ -40,11 +40,13 @@
     <!-- Left panel with reveal effect-->
     <div class="panel panel-left panel-reveal">
         <div class="content-block">
-            <p>Left panel content goes here</p>
+            <a href="about.html" class="close-panel">About app</a>
             <br>
-            <a href="about.html">About app</a>
+            <a href="serverConfig.html" class="close-panel">Configure</a>
             <br>
-            <a href="serverConfig.html">Configure</a>
+            <a href="serverOverview.html" class="close-panel">Your server</a>
+            <br>
+            <a href="playerList.html" class="close-panel">Online Players</a>
         </div>
     </div>
 
@@ -77,19 +79,12 @@
                         <div class="content-block">
                             <p>Page content goes here</p>
                             <!-- Link to another page -->
-                            <a href="about.html">About app</a>
+                            <img src="img/csmmlogo.png" width="75%">
                         </div>
                     </div>
                 </div>
             </div>
-            <!-- Bottom Toolbar-->
-            <div class="toolbar">
-                <div class="toolbar-inner">
-                    <!-- Toolbar links -->
-                    <a href="#" class="link">Link 1</a>
-                    <a href="#" class="link">Link 2</a>
-                </div>
-            </div>
+        
         </div>
     </div>
 
