@@ -2,95 +2,88 @@
 
 <!-- Top Navbar-->
 <div class="navbar">
-    <div class="navbar-inner">
-        <div class="left">
-            <a href="#" class="back link">
+  <div class="navbar-inner">
+    <div class="left">
+      <a href="#" class="back link">
                 <i class="icon icon-back"></i>
                 <span>Back</span>
             </a>
-        </div>
-        <div class="center sliding">Config</div>
-        <div class="right">
-            <a href="#" class="link icon-only open-panel">
+    </div>
+    <div class="center sliding">Config</div>
+    <div class="right">
+      <a href="#" class="link icon-only open-panel">
                 <i class="icon icon-bars"></i>
             </a>
-        </div>
     </div>
+  </div>
 </div>
+
 <div class="pages">
-    <div data-page="config" class="page">
-        <div class="page-content">
-            <div class="list-block">
-                <form id="addServer-form" onsubmit="addServer()">
-                    <ul>
-                        <li>
-                            <div class="item-content">
-                                <div class="item-inner">
-                                </div>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="item-content">
-                                <div class="item-inner">
-                                    <div class="item-title label">Server IP</div>
-                                    <div class="item-input">
-                                        <input id="input-serverip" type="text" name="serverip">
-                                    </div>
-                                </div>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="item-content">
-                                <div class="item-inner">
-                                    <div class="item-title label">Telnet port</div>
-                                    <div class="item-input">
-                                        <input id="input-telnetport" type="text" name="telnetport">
-                                    </div>
-                                </div>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="item-content">
-                                <div class="item-inner">
-                                    <div class="item-title label">Telnet Password</div>
-                                    <div class="item-input">
-                                        <input id="input-telnetpassword" type="password" name="telnetpassword">
-                                    </div>
-                                </div>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="item-content">
-                                <div class="item-inner">
-                                    <div class="item-title label">User name</div>
-                                    <div class="item-input">
-                                        <input id="input-username" type="text" name="username">
-                                    </div>
-                                </div>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="item-content">
-                                <div class="item-inner">
-                                    <div class="item-title label">Web port</div>
-                                    <div class="item-input">
-                                        <input id="input-webport" type="text" name="webport">
-                                    </div>
-                                </div>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="item-content">
-                                <div class="item-inner">
-                                    <div class="item-input">
-                                        <input id="addServer-submit" class="button" type="submit" value="Submit">
-                                    </div>
-                                </div>
-                            </div>
-                        </li>
-                    </ul>
-                </form>
+  <div data-page="config" class="page">
+    <div class="page-content">
+      <form id="addServer-form" class="list-block" onsubmit="addServer()">
+        <ul>
+          <li>
+            <div class="item-content">
+              <div class="item-inner">
+              </div>
             </div>
-        </div>
+          </li>
+          <li>
+            <div class="item-content">
+              <div class="item-inner">
+                <div class="item-title label">Server IP</div>
+                <div class="item-input">
+                  <input id="input-serverip" type="text" name="serverip">
+                </div>
+              </div>
+            </div>
+          </li>
+          <li>
+            <div class="item-content">
+              <div class="item-inner">
+                <div class="item-title label">Telnet port</div>
+                <div class="item-input">
+                  <input id="input-telnetport" type="text" name="telnetport">
+                </div>
+              </div>
+            </div>
+          </li>
+          <li>
+            <div class="item-content">
+              <div class="item-inner">
+                <div class="item-title label">Telnet Password</div>
+                <div class="item-input">
+                  <input id="input-telnetpassword" type="password" name="telnetpassword">
+                </div>
+              </div>
+            </div>
+          </li>
+          <li>
+            <div class="item-content">
+              <div class="item-inner">
+                <div class="item-title label">User name</div>
+                <div class="item-input">
+                  <input id="input-username" type="text" name="username">
+                </div>
+              </div>
+            </div>
+          </li>
+          <li>
+            <div class="item-content">
+              <div class="item-inner">
+                <div class="item-title label">Web port</div>
+                <div class="item-input">
+                  <input id="input-webport" type="text" name="webport">
+                </div>
+              </div>
+            </div>
+          </li>
+        </ul>
+      </form>
+      <div class="content-block">
+        <a href="#" class="button addServer-submit">Submit</a>
+      </div>
     </div>
+  </div>
 </div>
